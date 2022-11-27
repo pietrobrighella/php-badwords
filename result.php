@@ -1,6 +1,9 @@
 <?php 
     $text = $_GET['text'];
     $word = $_GET['word'];
+
+    $text_bad = str_ireplace("$word", "***" ,"$text");
+    $pure_text = str_replace("*","",$text_bad);
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +24,9 @@
         <div class="col-6 mb-5 border p-2 w-100">
             <p class="text-primary"><?php echo "$text" ?></p>
         </div>
-        <h6 class="pb-1">Questo è il paragrafo censurato:</h6>
+        <h6 class="pb-1">Questo è il paragrafo censurato e contiene <?php echo strlen("$pure_text") ?> caratteri (escluso ***):</h6>
         <div class="col-6 border p-2 w-100 mb-5">
-            <p class="text-primary"><?php echo str_ireplace("$word", "<strong class=\"red\">" . "***" . "</strong>" ,"$text") ?></p>
+            <p class="text-primary"><?php echo "$text_bad" ?></p>
         </div>
         <a href="./index.php"><button class="btn btn-primary mb-3 w-100">Censura un nuovo paragrafo</button></a>
     </div>
